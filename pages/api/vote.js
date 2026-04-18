@@ -30,12 +30,19 @@ export default async function handler(req, res) {
     const ip = req.headers['x-forwarded-for']?.split(',')[0].trim()
       || req.socket.remoteAddress
 
-    const country =
-  req.headers['cf-ipcountry'] ||
-  req.headers['x-vercel-ip-country'] ||
-  req.headers['x-vercel-ip-country-region'] ||
-  req.headers['x-country-code'] ||
-  'XX'
+    let country = req.headers['cf-ipcountry']
+      || req.headers['x-vercel-ip-country']
+      || 'XX'
+
+    if (country === 'XX') {
+      try {
+        const geo = await fetch(`http://ip-api.com/json/${ip}?fields=countryCode`)
+        const geoData = await geo.json()
+        if (geoData.countryCode) country = geoData.countryCode
+      } catch (e) {
+        country = 'XX'
+      }
+    }
 
     const { error } = await supabase
       .from('votes')
