@@ -6,6 +6,7 @@ export default function Home() {
   const [voted, setVoted] = useState(false)
   const [mode, setMode] = useState(null)
   const [loading, setLoading] = useState(false)
+const [byCountry, setByCountry] = useState({})
   const svgRef = useRef(null)
 
   useEffect(() => {
@@ -21,6 +22,7 @@ export default function Home() {
     const res = await fetch('/api/vote')
     const data = await res.json()
     setVotes({ yes: data.yes, no: data.no })
+setByCountry(data.byCountry || {})
   }
 
   async function castVote(type) {
@@ -280,6 +282,30 @@ export default function Home() {
             </div>
           )}
         </div>
+ {/* World Map */}
+        {Object.keys(byCountry).length > 0 && (
+          <div style={{ width: '100%', maxWidth: 600, marginTop: 40 }}>
+            <p style={{ fontSize: 13, color: '#555', textAlign: 'center', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+              Votes by country
+            </p>
+            {Object.entries(byCountry)
+              .sort((a, b) => (b[1].yes + b[1].no) - (a[1].yes + a[1].no))
+              .map(([country, counts]) => {
+                const t = counts.yes + counts.no
+                const yp = Math.round(counts.yes / t * 100)
+                return (
+                  <div key={country} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
+                    <div style={{ fontSize: 13, color: '#666', width: 36, textAlign: 'right' }}>{country}</div>
+                    <div style={{ flex: 1, height: 8, background: '#1a1a1a', borderRadius: 99, overflow: 'hidden', display: 'flex' }}>
+                      <div style={{ width: yp + '%', height: '100%', background: '#4caf50', borderRadius: '99px 0 0 99px', transition: 'width 0.6s ease' }}/>
+                      <div style={{ width: (100-yp) + '%', height: '100%', background: '#ef5350', borderRadius: '0 99px 99px 0', transition: 'width 0.6s ease' }}/>
+                    </div>
+                    <div style={{ fontSize: 11, color: '#555', width: 60 }}>{counts.yes}Y · {counts.no}N</div>
+                  </div>
+                )
+              })}
+          </div>
+        )}
       </main>
     </>
   )
