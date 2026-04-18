@@ -4,7 +4,7 @@ export default async function handler(req, res) {
 
   let geoResult = null
   try {
-    const geo = await fetch(`http://ip-api.com/json/${ip}?fields=countryCode,country,query`)
+    const geo = await fetch(`https://freeipapi.com/api/json/${ip}`)
     geoResult = await geo.json()
   } catch (e) {
     geoResult = { error: e.message }
@@ -12,12 +12,9 @@ export default async function handler(req, res) {
 
   res.status(200).json({
     ip,
-    headers: {
-      cf_ipcountry: req.headers['cf-ipcountry'],
-      vercel_ip_country: req.headers['x-vercel-ip-country'],
-      forwarded_for: req.headers['x-forwarded-for'],
-    },
-    geo_api_result: geoResult
+    cf_ipcountry: req.headers['cf-ipcountry'],
+    vercel_ip_country: req.headers['x-vercel-ip-country'],
+    forwarded_for: req.headers['x-forwarded-for'],
+    geo_result: geoResult
   })
 }
-
