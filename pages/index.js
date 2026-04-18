@@ -42,7 +42,7 @@ export default function Home() {
 
   const total = votes.yes + votes.no
   const yesPct = total ? Math.round(votes.yes / total * 100) : 0
-  const noPct = 100 - yesPct
+  const noPct = total ? 100 - yesPct : 0
 
   const end = new Date('2029-01-20T12:00:00')
   const [timer, setTimer] = useState({})
