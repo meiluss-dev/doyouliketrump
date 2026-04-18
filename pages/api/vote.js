@@ -31,9 +31,11 @@ export default async function handler(req, res) {
       || req.socket.remoteAddress
 
     const country =
-      req.headers['cf-ipcountry'] ||
-      req.headers['x-vercel-ip-country'] ||
-      'XX'
+  req.headers['cf-ipcountry'] ||
+  req.headers['x-vercel-ip-country'] ||
+  req.headers['x-vercel-ip-country-region'] ||
+  req.headers['x-country-code'] ||
+  'XX'
 
     const { error } = await supabase
       .from('votes')
