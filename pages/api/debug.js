@@ -20,3 +20,4 @@ export default async function handler(req, res) {
     geo_api_result: geoResult
   })
 }
+
