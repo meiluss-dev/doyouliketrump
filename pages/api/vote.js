@@ -35,14 +35,14 @@ export default async function handler(req, res) {
       || 'XX'
 
     if (country === 'XX') {
-      try {
-        const geo = await fetch(`http://ip-api.com/json/${ip}?fields=countryCode`)
-        const geoData = await geo.json()
-        if (geoData.countryCode) country = geoData.countryCode
-      } catch (e) {
-        country = 'XX'
-      }
-    }
+  try {
+    const geo = await fetch(`https://freeipapi.com/api/json/${ip}`)
+    const geoData = await geo.json()
+    if (geoData.countryCode) country = geoData.countryCode
+  } catch (e) {
+    country = 'XX'
+  }
+}
 
     const { error } = await supabase
       .from('votes')
