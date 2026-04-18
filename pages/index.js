@@ -241,45 +241,44 @@ export default function Home() {
             </div>
           ))}
           <p style={{ fontSize: 12, color: '#444', textAlign: 'center', marginTop: 8 }}>
-  {total.toLocaleString()} votes cast worldwide
-</p>
-
-{voted && (
-  <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 20 }}>
-    <button
-      onClick={() => {
-        const text = mode === 'yes'
-          ? `I voted YES on doyouliketrump.com 👼 ${yesPct}% of people agree! Cast your vote:`
-          : `I voted NO on doyouliketrump.com 😈 ${noPct}% of people agree! Cast your vote:`
-        window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://www.doyouliketrump.com')}`, '_blank')
-      }}
-      style={{
-        padding: '10px 20px', borderRadius: 10, border: '1.5px solid #1da1f2',
-        color: '#1da1f2', background: 'transparent', fontSize: 14,
-        fontWeight: 600, cursor: 'pointer'
-      }}>
-      Share on X
-    </button>
-    <button
-      onClick={() => {
-        const url = 'https://www.doyouliketrump.com'
-        if (navigator.share) {
-          navigator.share({ title: 'Do you like Trump?', url })
-        } else {
-          navigator.clipboard.writeText(url)
-          alert('Link copied!')
-        }
-      }}
-      style={{
-        padding: '10px 20px', borderRadius: 10, border: '1.5px solid #555',
-        color: '#aaa', background: 'transparent', fontSize: 14,
-        fontWeight: 600, cursor: 'pointer'
-      }}>
-      Copy link
-    </button>
-  </div>
-)}
+            {total.toLocaleString()} votes cast worldwide
           </p>
+
+          {voted && (
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'center', marginTop: 20 }}>
+              <button
+                onClick={() => {
+                  const text = mode === 'yes'
+                    ? `I voted YES on doyouliketrump.com 👼 ${yesPct}% of people agree! Cast your vote:`
+                    : `I voted NO on doyouliketrump.com 😈 ${noPct}% of people agree! Cast your vote:`
+                  window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent('https://www.doyouliketrump.com')}`, '_blank')
+                }}
+                style={{
+                  padding: '10px 20px', borderRadius: 10, border: '1.5px solid #1da1f2',
+                  color: '#1da1f2', background: 'transparent', fontSize: 14,
+                  fontWeight: 600, cursor: 'pointer'
+                }}>
+                Share on X
+              </button>
+              <button
+                onClick={() => {
+                  const url = 'https://www.doyouliketrump.com'
+                  if (navigator.share) {
+                    navigator.share({ title: 'Do you like Trump?', url })
+                  } else {
+                    navigator.clipboard.writeText(url)
+                    alert('Link copied!')
+                  }
+                }}
+                style={{
+                  padding: '10px 20px', borderRadius: 10, border: '1.5px solid #555',
+                  color: '#aaa', background: 'transparent', fontSize: 14,
+                  fontWeight: 600, cursor: 'pointer'
+                }}>
+                Copy link
+              </button>
+            </div>
+          )}
         </div>
       </main>
     </>
