@@ -70,12 +70,12 @@ setByCountry(data.byCountry || {})
         <meta name="description" content="The world votes. Do you like Trump? Cast your vote now." />
         <meta property="og:title" content="Do you like Trump?" />
         <meta property="og:description" content="Cast your vote. See how the world feels." />
-<meta property="og:image" content="https://res.cloudinary.com/debacnwvw/image/upload/v1776702262/Trump-OG-1_jp8nn1.jpg"/>
+<meta property="og:image" content="https://res.cloudinary.com/debacnwvw/image/upload/v1776705089/TrumpOG-1_p1izdv.jpg"/>
 <meta property="og:image:width" content="1200"/>
 <meta property="og:image:height" content="630"/>
 <meta property="og:url" content="https://www.doyouliketrump.com"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://res.cloudinary.com/debacnwvw/image/upload/v1776702262/Trump-OG-1_jp8nn1.jpg"/>
+<meta name="twitter:image" content="https://res.cloudinary.com/debacnwvw/image/upload/v1776705089/TrumpOG-1_p1izdv.jpg"/>
       </Head>
 
       <main style={{
