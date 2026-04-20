@@ -287,7 +287,7 @@ setByCountry(data.byCountry || {})
               {yp}% YES
             </div>
             <div style={{ fontSize: 12, color: '#555', width: 60, textAlign: 'left' }}>
-              {t} vote{t !== 1 ? 's' : ''}
+              {t} {t !== 1 ? 'votes' : 'vote'}
             </div>
           </div>
         )
