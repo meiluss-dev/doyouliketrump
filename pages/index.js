@@ -113,25 +113,23 @@ setByCountry(data.byCountry || {})
         </p>
 
 {/* Character video */}
-      <div style={{ marginBottom: 16, width: 220, height: 280, position: 'relative' }}>
-        {mode === null && (
-          <video autoPlay loop muted playsInline
-            style={{ width: 220, height: 280, objectFit: 'contain' }}>
-            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776697808/Trump-still-black_y49fye.mp4" type="video/webm"/>
-          </video>
-        )}
-        {mode === 'yes' && (
-          <video key="yes" autoPlay loop muted playsInline
-            style={{ width: 220, height: 280, objectFit: 'contain' }}>
-            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776696961/Trump-yes-black_keyeth.mp4" type="video/webm"/>
-          </video>
-        )}
-        {mode === 'no' && (
-          <video key="no" autoPlay loop muted playsInline
-            style={{ width: 220, height: 280, objectFit: 'contain' }}>
-            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776696961/Trump-no-black_uf6qbb.mp4" type="video/webm"/>
-          </video>
-        )}
+      <div style={{ marginBottom: 16, width: 280, height: 380, position: 'relative' }}>
+        <video
+          key={mode}
+          autoPlay
+          loop
+          muted
+          playsInline
+          style={{ width: 280, height: 380, objectFit: 'contain' }}
+        >
+          <source src={
+            mode === 'yes'
+              ? 'https://res.cloudinary.com/debacnwvw/video/upload/v1776696961/Trump-yes-black_keyeth.mp4'
+              : mode === 'no'
+              ? 'https://res.cloudinary.com/debacnwvw/video/upload/v1776696961/Trump-no-black_uf6qbb.mp4'
+              : 'https://res.cloudinary.com/debacnwvw/video/upload/v1776697808/Trump-still-black_y49fye.mp4'
+          } type="video/mp4"/>
+        </video>
       </div>
 
         <p style={{ fontSize: 14, color: '#888', marginBottom: 20, minHeight: 20 }}>
