@@ -108,7 +108,7 @@ setByCountry(data.byCountry || {})
             </div>
           ))}
         </div>
-        <p style={{ fontSize: 14, color: '#444', marginBottom: 32 }}>
+        <p style={{ fontSize: 14, color: '#aaa', marginBottom: 32 }}>
           left until end of term · Jan 20, 2029
         </p>
 
@@ -178,7 +178,7 @@ setByCountry(data.byCountry || {})
               <div style={{ fontSize: 13, color: '#666', width: 36 }}>{pct}%</div>
             </div>
           ))}
-          <p style={{ fontSize: 12, color: '#444', textAlign: 'center', marginTop: 8 }}>
+          <p style={{ fontSize: 13, color: '#aaa', textAlign: 'center', marginTop: 8 }}>
             {total.toLocaleString()} votes cast worldwide
           </p>
 
