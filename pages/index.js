@@ -263,10 +263,10 @@ setByCountry(data.byCountry || {})
     </Geographies>
   </ComposableMap>
   <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginTop: 8 }}>
-    <span style={{ fontSize: 11, color: '#2e7d32' }}>{'▪'} Mostly YES</span>
-    <span style={{ fontSize: 11, color: '#f9a825' }}>{'▪'} Mixed</span>
-    <span style={{ fontSize: 11, color: '#c62828' }}>{'▪'} Mostly NO</span>
-    <span style={{ fontSize: 11, color: '#555' }}>{'▪'} No votes yet</span>
+    <span style={{ fontSize: 11, color: '#2e7d32' }}>+ Mostly YES</span>
+    <span style={{ fontSize: 11, color: '#f9a825' }}>~ Mixed</span>
+    <span style={{ fontSize: 11, color: '#c62828' }}>- Mostly NO</span>
+    <span style={{ fontSize: 11, color: '#555' }}>. No votes yet</span>
   </div>
 </div>
         )}
