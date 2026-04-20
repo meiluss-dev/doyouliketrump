@@ -109,7 +109,7 @@ setByCountry(data.byCountry || {})
           ))}
         </div>
         <p style={{ fontSize: 14, color: '#aaa', marginBottom: 32 }}>
-          left until end of term · Jan 20, 2029
+          left until the end of term · Jan 20, 2029
         </p>
 
 {/* Character video */}
