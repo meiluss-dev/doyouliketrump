@@ -114,7 +114,7 @@ export default function Home() {
           ))}
         </div>
         <p style={{ fontSize: 13, color: '#aaa', marginBottom: 32 }}>
-          days until end of term · Jan 20, 2029
+          days until the end of term · Jan 20, 2029
         </p>
 
         <div style={{ marginBottom: 16, width: 280, height: 380, position: 'relative' }}>
