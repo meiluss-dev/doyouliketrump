@@ -12,7 +12,5 @@
     "react": "^18",
     "react-dom": "^18",
     "@supabase/supabase-js": "^2.39.0",
-"react-simple-maps": "^3.0.0",
-"d3-scale": "^4.0.2"
   }
 }
