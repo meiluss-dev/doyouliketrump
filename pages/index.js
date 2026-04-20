@@ -102,7 +102,7 @@ setByCountry(data.byCountry || {})
               <div style={{ fontSize: 28, fontWeight: 600, lineHeight: 1.1, color: '#fff' }}>
                 {String(val ?? '—').padStart(2, '0')}
               </div>
-              <div style={{ fontSize: 10, color: '#555', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+              <div style={{ fontSize: 10, color: '#aaa', textTransform: 'uppercase', letterSpacing: '0.1em' }}>
                 {label}
               </div>
             </div>
