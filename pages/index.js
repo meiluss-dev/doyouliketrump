@@ -117,19 +117,19 @@ setByCountry(data.byCountry || {})
         {mode === null && (
           <video autoPlay loop muted playsInline
             style={{ width: 220, height: 280, objectFit: 'contain' }}>
-            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776629108/yes-clip-2_uvatkb.webm" type="video/webm"/>
+            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776697808/Trump-still-black_y49fye.mp4" type="video/webm"/>
           </video>
         )}
         {mode === 'yes' && (
           <video key="yes" autoPlay loop muted playsInline
             style={{ width: 220, height: 280, objectFit: 'contain' }}>
-            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776629108/yes-clip-2_uvatkb.webm" type="video/webm"/>
+            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776696961/Trump-yes-black_keyeth.mp4" type="video/webm"/>
           </video>
         )}
         {mode === 'no' && (
           <video key="no" autoPlay loop muted playsInline
             style={{ width: 220, height: 280, objectFit: 'contain' }}>
-            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776629108/no-clip-2_rp7guy.webm" type="video/webm"/>
+            <source src="https://res.cloudinary.com/debacnwvw/video/upload/v1776696961/Trump-no-black_uf6qbb.mp4" type="video/webm"/>
           </video>
         )}
       </div>
