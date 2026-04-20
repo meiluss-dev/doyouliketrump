@@ -138,7 +138,7 @@ export default function Home() {
 
         <p style={{ fontSize: 14, color: '#888', marginBottom: 20, minHeight: 20 }}>
           {voted
-            ? mode === 'yes' ? 'Angel mode activated!' : 'The horns have spoken.'
+            ? mode === 'yes' ? 'Dance mode activated!' : 'The tears have spoken.'
             : 'Cast your vote below'}
         </p>
 
