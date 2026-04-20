@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import Head from 'next/head'
+import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 
 export default function Home() {
   const [votes, setVotes] = useState({ yes: 0, no: 0 })
@@ -225,28 +226,49 @@ setByCountry(data.byCountry || {})
           )}
         </div>
  {/* World Map */}
-        {Object.keys(byCountry).length > 0 && (
-          <div style={{ width: '100%', maxWidth: 600, marginTop: 40 }}>
-            <p style={{ fontSize: 13, color: '#555', textAlign: 'center', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
-              Votes by country
-            </p>
-            {Object.entries(byCountry)
-              .sort((a, b) => (b[1].yes + b[1].no) - (a[1].yes + a[1].no))
-              .map(([country, counts]) => {
-                const t = counts.yes + counts.no
-                const yp = Math.round(counts.yes / t * 100)
-                return (
-                  <div key={country} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 8 }}>
-                    <div style={{ fontSize: 13, color: '#666', width: 36, textAlign: 'right' }}>{country}</div>
-                    <div style={{ flex: 1, height: 8, background: '#1a1a1a', borderRadius: 99, overflow: 'hidden', display: 'flex' }}>
-                      <div style={{ width: yp + '%', height: '100%', background: '#4caf50', borderRadius: '99px 0 0 99px', transition: 'width 0.6s ease' }}/>
-                      <div style={{ width: (100-yp) + '%', height: '100%', background: '#ef5350', borderRadius: '0 99px 99px 0', transition: 'width 0.6s ease' }}/>
-                    </div>
-                    <div style={{ fontSize: 11, color: '#555', width: 60 }}>{counts.yes}Y · {counts.no}N</div>
-                  </div>
-                )
-              })}
-          </div>
+        <div style={{ width: '100%', maxWidth: 700, marginTop: 40 }}>
+  <p style={{ fontSize: 13, color: '#aaa', textAlign: 'center', marginBottom: 12, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+    Votes by country
+  </p>
+  <ComposableMap projectionConfig={{ scale: 147 }} style={{ width: '100%', height: 'auto' }}>
+    <Geographies geography="https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json">
+      {({ geographies }) =>
+        geographies.map(geo => {
+          const code = geo.properties.iso_a2
+          const counts = byCountry[code]
+          const total = counts ? counts.yes + counts.no : 0
+          const yesPct = total ? counts.yes / total : 0
+          let fill = '#1a1a1a'
+          if (total > 0) {
+            if (yesPct >= 0.6) fill = '#2e7d32'
+            else if (yesPct <= 0.4) fill = '#c62828'
+            else fill = '#f9a825'
+          }
+          return (
+            <Geography
+              key={geo.rsmKey}
+              geography={geo}
+              fill={fill}
+              stroke="#333"
+              strokeWidth={0.5}
+              style={{
+                default: { outline: 'none' },
+                hover: { outline: 'none', opacity: 0.8 },
+                pressed: { outline: 'none' }
+              }}
+            />
+          )
+        })
+      }
+    </Geographies>
+  </ComposableMap>
+  <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginTop: 8 }}>
+    <span style={{ fontSize: 11, color: '#2e7d32' }}>■ Mostly YES</span>
+    <span style={{ fontSize: 11, color: '#f9a825' }}>■ Mixed</span>
+    <span style={{ fontSize: 11, color: '#c62828' }}>■ Mostly NO</span>
+    <span style={{ fontSize: 11, color: '#333' }}>■ No votes yet</span>
+  </div>
+</div>
         )}
       </main>
     </>
