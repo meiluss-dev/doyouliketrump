@@ -292,8 +292,6 @@ setByCountry(data.byCountry || {})
           </div>
         )
       })
-  )}
-</div>
 </div>
         )}
       </main>
