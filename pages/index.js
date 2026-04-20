@@ -1,6 +1,5 @@
 import { useEffect, useState, useRef } from 'react'
 import Head from 'next/head'
-import { ComposableMap, Geographies, Geography } from 'react-simple-maps'
 
 export default function Home() {
   const [votes, setVotes] = useState({ yes: 0, no: 0 })
@@ -262,12 +261,39 @@ setByCountry(data.byCountry || {})
       }
     </Geographies>
   </ComposableMap>
-  <div style={{ display: 'flex', gap: 20, justifyContent: 'center', marginTop: 8 }}>
-    <span style={{ fontSize: 11, color: '#2e7d32' }}>+ Mostly YES</span>
-    <span style={{ fontSize: 11, color: '#f9a825' }}>~ Mixed</span>
-    <span style={{ fontSize: 11, color: '#c62828' }}>- Mostly NO</span>
-    <span style={{ fontSize: 11, color: '#555' }}>. No votes yet</span>
-  </div>
+  <div style={{ width: '100%', maxWidth: 700, marginTop: 40 }}>
+  <p style={{ fontSize: 13, color: '#aaa', textAlign: 'center', marginBottom: 16, textTransform: 'uppercase', letterSpacing: '0.1em' }}>
+    Votes by country
+  </p>
+  {Object.keys(byCountry).length === 0 ? (
+    <p style={{ fontSize: 13, color: '#555', textAlign: 'center' }}>
+      No country votes yet — be the first!
+    </p>
+  ) : (
+    Object.entries(byCountry)
+      .sort((a, b) => (b[1].yes + b[1].no) - (a[1].yes + a[1].no))
+      .map(([country, counts]) => {
+        const t = counts.yes + counts.no
+        const yp = Math.round(counts.yes / t * 100)
+        const np = 100 - yp
+        return (
+          <div key={country} style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 10 }}>
+            <div style={{ fontSize: 13, color: '#aaa', width: 36, textAlign: 'right', fontWeight: 600 }}>{country}</div>
+            <div style={{ flex: 1, height: 10, background: '#1a1a1a', borderRadius: 99, overflow: 'hidden', display: 'flex' }}>
+              <div style={{ width: yp + '%', height: '100%', background: '#4caf50', transition: 'width 0.6s ease' }}/>
+              <div style={{ width: np + '%', height: '100%', background: '#ef5350', transition: 'width 0.6s ease' }}/>
+            </div>
+            <div style={{ fontSize: 12, color: '#666', width: 70, textAlign: 'left' }}>
+              {yp}% YES
+            </div>
+            <div style={{ fontSize: 12, color: '#555', width: 60, textAlign: 'left' }}>
+              {t} vote{t !== 1 ? 's' : ''}
+            </div>
+          </div>
+        )
+      })
+  )}
+</div>
 </div>
         )}
       </main>
